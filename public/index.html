@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>News Authenticator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>News Outlet Authenticator</h1>
+
+    <input type="text" id="source"
+      placeholder="Enter news source (e.g., bbc-news)" />
+
+    <textarea id="text"
+      placeholder="Paste article or claim text here…"></textarea>
+
+    <button id="authenticate">Authenticate</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    document.getElementById('authenticate').onclick = async function() {
+      const source = document.getElementById('source').value;
+      const text   = document.getElementById('text').value;
+      const resultDiv = document.getElementById('result');
+      resultDiv.textContent = 'Authenticating…';
+      try {
+        const resp = await fetch('/authenticate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ source, text })
+        });
+        const data = await resp.json();
+        if (resp.ok) {
+          // Use the “final” fields our API now returns
+          resultDiv.textContent =
+            `Prediction: ${data.final_prediction} (Confidence: ${data.final_confidence.toFixed(2)})`;
+        } else {
+          resultDiv.textContent = `Error: ${data.error}`;
+        }
+      } catch (err) {
+        resultDiv.textContent = 'Error connecting to API';
+      }
+    };
+  </script>
+</body>
+</html>

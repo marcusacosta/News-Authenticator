@@ -1,0 +1,59 @@
+/* Make the page take full height */
+html, body {
+    margin: 0;
+    height: 100%;
+  }
+  
+  /* Center .container in page */
+  body {
+    display: flex;
+    justify-content: center;  /* horizontal center */
+    align-items: center;      /* vertical center */
+    background: #f5f7fa;
+    color: #333;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Constrain width */
+  .container {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  /* Form elements */
+  input, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background: #2980b9;
+  }
+  
+  .result {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #ecf0f1;
+    border-radius: 4px;
+    min-height: 2rem;
+  }
+  
